@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script>
+        // at the first space within the litereral string is where the
+        // hyperlink stops in the inspected image element src-set att.
+        // nevermind: all you have to do is wrap is around "".
+
+        var arrObjects = [
+            {
+            tiny: '0http&w=300',
+            small: '0http2w=600', 
+            portrait: '0http3w=900',
+            landscape: '0http4w=1200'
+            },
+            {
+            tiny: '1http&w=300',
+            small: '1http2w=600', 
+            portrait: '1http3w=900',
+            landscape: '1http4w=1200'
+            },
+            {
+            tiny: '2http&w=300',
+            small: '2http2w=600', 
+            portrait: '2http3w=900',
+            landscape: '2http4w=1200'
+            }
+        ];
+        
+        // works as intended (an array with 3 sets -- 4 items in each)
+        // desired arr: ['http&w=300 300w', 'http2w=600 600w', 'http3w=900 900w', 'http4w=1200 1200w'];
+        var valsArr = []; //will become a 2d array
+        arrObjects.forEach(function(object) {
+            var valSet = [];
+            var valSet = Object.values(object);
+            var newValSet = [];
+            valSet.forEach( function(source){
+                newValSet.push(revamp(source));
+            })
+            valsArr.push(newValSet);    
+        });
+        console.log(valsArr); // var arr = ['http&w=300', 'http2w=600', 'http3w=900', 'http4w=1200'];
+        
+
+        // doesn't work as intended (ar array with 3 sets -- 12 items in each)
+        // improvedSet = [];
+        // improvedValsArr = [];
+        // valsArr.forEach(function(set){ // 3 sets
+        //     set.forEach(function(source){ // 4 sources per set
+        //         var improvedSrc = revamp(source);
+        //         improvedSet.push(improvedSrc)
+        //         // improvedSet.push(function revamp(source){})
+        //         if (set.lastIndexOf(source) == set.length-1){
+        //             improvedValsArr.push(improvedSet);
+        //         }
+        //     })
+        // })
+
+        // console.log(improvedValsArr);
+
+        var test = document.querySelector("#test");
+        test.innerHTML=`
+        <img srcset="${valsArr}">
+        `
+
+        function revamp(string) {
+            // return x+ 'something';
+            /*  I want the function to take a string value,
+                grab the right-hand portion starting from the 5th or 6th to last character,
+                store that operation in a variable, then concatenate +` ${variable}w` to the end of the string
+                Lastly, I'll return the result
+            */
+            var subStr = '';    
+            if (string.substr(-4, 1) == '='){
+                subStr = string.substr(-3);
+            } else {
+                subStr = string.substr(-4);
+            }
+            newString = string + ` ${subStr}w`;
+            return newString;
+        }
+    </script>
+</body>
+</html>
