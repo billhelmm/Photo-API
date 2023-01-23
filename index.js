@@ -46,6 +46,7 @@ searchSection.innerHTML = `
 </div>
 `;
 
+// Run GET request for curated photo
 getHeroAPI();
 
 var tabs = document.getElementById("tabs");
@@ -145,6 +146,8 @@ function getHeroAPI() {
             var photographer = curatedPhotoData[0].photographer;
             var backgroundImg = curatedPhotoData[0].src.landscape;
             searchSection.style.backgroundImage = `url(${backgroundImg})`;
+            searchSection.style.setProperty('background-repeat', 'no-repeat');
+            searchSection.style.setProperty('background-size', 'cover');
             var span = document.querySelector(".api-photographer");
             span.textContent = photographer;
         }
@@ -154,8 +157,9 @@ function getHeroAPI() {
       xhttp.send();
 }
     
-var gallery = document.querySelector("#photo-divs");
 
+
+// For some reason I can't use the variable searchForm as the E.L. element 
 document.querySelector("#search-form").addEventListener("submit", function(form) {
     form.preventDefault();
     var xhttp = new XMLHttpRequest();

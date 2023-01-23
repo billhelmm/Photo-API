@@ -1,3 +1,6 @@
+// IGNORE: Previous attempt at rending photos
+
+
 document.querySelector("#search-form").addEventListener("submit", function(form) {
     form.preventDefault();
     var xhttp = new XMLHttpRequest();

@@ -33,11 +33,12 @@ a{
     width: 100px;
     height: 70px;
     vertical-align: top;
-    margin: -10px;   
+    margin: -10px;
+    transition: .5s;   
 }
 .header-img:hover{
     -webkit-filter: brightness(70%);
-    transition: all .5s ease;
+    transition: .5s;
 }
 .header-menu{
     flex: 1;
@@ -61,11 +62,12 @@ a{
     color: white;
     border-radius: 5px;
     font-weight: 500;
+    transition: .5s;
 }
 .join-btn:hover{
     cursor: pointer;
     -webkit-filter: brightness(70%);
-    transition: all .5s ease;
+    transition: .5s;
 }
 .mobile-btn{
     padding: 0 20px;
@@ -111,15 +113,16 @@ a{
     margin-left: -50px;
     border-radius: 5px;
     border: none;
-    background: none;    
-}
-.search-button img{
-    max-height: 50%;
+    background: none;
+    transition: .5s;    
 }
 .search-button:hover{
     cursor:pointer;
     -webkit-filter: brightness(70%);
-    transition: all .5s ease;
+    transition: .5s;
+}
+.search-button img{
+    max-height: 50%;
 }
 .trending span:first-child{
     color: lightgray;
@@ -130,11 +133,12 @@ a{
     font-size: 18px;
     font-weight: 500;
     margin-top: 30px;
+    transition: .5s;
 }
 .trending span:nth-child(n+2):hover{
     cursor:pointer;
     color: rgb(181, 181, 181);
-    transition: .5s ease all;
+    transition: .5s;
 }
 
 /* Credits */
@@ -146,11 +150,12 @@ a{
     color: white;
     opacity: .8;
     padding-right: 30px;
+    transition: .5s;
 }
 .photo-credits:hover{
     cursor: pointer;
     opacity: 1;
-    transition: .5s ease-in;
+    transition: .5s;
 }
 
 /* || TABS */
@@ -168,6 +173,10 @@ a{
 }
 #tabs a{
     cursor: pointer;
+    transition: .3s;
+}
+#tabs a:hover{
+    transition: .3s;
 }
 #tabs a:first-child{
     color: white;
@@ -215,15 +224,18 @@ a{
 
 /* || PHOTO-DIVS */
 
+/* Had to settle for a specific div height.
+   offset,client, and scrollHeight gave unreliable measurements for
+   generating dynamic #photo-div heights
+*/
 #photo-divs{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   overflow-x: hidden;
-  max-height:2700px;
+  max-height:3000px;
   width: 95%;
   margin: 0 auto;
-  align-items: space-between;
 }
 .photo-div{
     width: 49%;
@@ -241,10 +253,11 @@ a{
     background-color: black;
     display: flex;
     flex-direction: column;
+    transition: .5s;
 }
 #footer a:hover{
     -webkit-filter: brightness(70%);
-    transition: all .5s ease-in;
+    transition: .5s;
 }
 .footer-sitemap{
     display: flex;
@@ -286,7 +299,7 @@ a{
     max-width:100%;
     max-height:100%;
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 900px) and (max-width: 1250px){
 
     .header-menu{
         display: flex;
@@ -304,19 +317,15 @@ a{
     .menu-navbar a:nth-child(-n+3), .menu-navbar button{
         display:inherit;
         align-items: center;
+        transition: .3s;
     }
     .menu-navbar a:nth-child(-n+3):hover, .menu-navbar button:hover{
         cursor:pointer;
         color:grey;
-        transition: .3s ease-in;
+        transition: .3s;
     }
     .menu-navbar button:last-child {
         display: none;
-    }
-    .ellipses-btn img:hover{
-        cursor: pointer;
-        -webkit-filter: brightness(70%);
-        transition: all .5s ease;
     }
     .ellipses-btn{
         background: none;
@@ -324,6 +333,12 @@ a{
     }
     .ellipses-btn img{
         max-height:50%;
+        transition: .5s;
+    }
+    .ellipses-btn img:hover{
+        cursor: pointer;
+        -webkit-filter: brightness(70%);
+        transition: .5s;
     }
     .search{
         width: 45%;
@@ -336,24 +351,34 @@ a{
         width: 90%;
         margin:auto;
     }
+    /* Had to settle for a specific div height.
+   offset,client, and scrollHeight gave unreliable measurements for
+   generating dynamic #photo-div heights
+*/
     #photo-divs{
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         width: 90%;
-        max-height: 2200px;
-        align-items: space-between;
+        max-height: 1700px;
         margin: 0 auto;
     }
     .photo-div{
-          width: 32%;
-          margin: 0 0 10px 0;
+        width: 32%;
+        margin: 0 0 10px 0;
     }
     .photo{
-          max-height: 608px;
+        max-height: 608px;
     }
     #footer{
         margin-top: 25px;
         padding-bottom: 25px;
     }
+};
+
+/* Breakpoint isn't kicking in*/
+@media only screen and (min-width: 1250px){
+    #photo-divs{
+        max-height: 1500px;
+    }   
 };
