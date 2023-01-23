@@ -1,4 +1,4 @@
-// IGNORE: Previous attempt at rending photos
+// IGNORE FILE: Previous attempt at rending photos using source set and sizes
 
 
 document.querySelector("#search-form").addEventListener("submit", function(form) {
